@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DefenderIdentity", "Defende
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DefenderUiGateway", "DefenderUiGateway\DefenderUiGateway.csproj", "{148F59B7-6193-44DE-8FB5-C5CD29C04118}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationClient", "NotificationClient\NotificationClient.csproj", "{3F7EE1F3-384B-421A-97DC-512CF8344ABC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationClientTests", "NotificationClientTests\NotificationClientTests.csproj", "{101CCFC9-C6AE-461E-A75B-8D34C5329DA9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{148F59B7-6193-44DE-8FB5-C5CD29C04118}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{148F59B7-6193-44DE-8FB5-C5CD29C04118}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{148F59B7-6193-44DE-8FB5-C5CD29C04118}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F7EE1F3-384B-421A-97DC-512CF8344ABC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F7EE1F3-384B-421A-97DC-512CF8344ABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F7EE1F3-384B-421A-97DC-512CF8344ABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F7EE1F3-384B-421A-97DC-512CF8344ABC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{101CCFC9-C6AE-461E-A75B-8D34C5329DA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{101CCFC9-C6AE-461E-A75B-8D34C5329DA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{101CCFC9-C6AE-461E-A75B-8D34C5329DA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{101CCFC9-C6AE-461E-A75B-8D34C5329DA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
