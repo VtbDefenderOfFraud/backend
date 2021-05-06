@@ -12,7 +12,6 @@ namespace DefenderUiGateway.Controllers
     public class UserController
     {
         private readonly DefenderDbContext _dbContext;
-
         private readonly IMapper _mapper;
 
         public UserController(DefenderDbContext dbContext , IMapper mapper)

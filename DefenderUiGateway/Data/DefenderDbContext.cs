@@ -14,7 +14,11 @@ namespace DefenderUiGateway.Data
         {
             modelBuilder.Entity<User>().HasData(new User
             {
-                Id = 1, Name = "Сидоров Иван Петрович", Passport = "1111222222", RatingMin = 300, RatingMax = 850,
+                Id = 1,
+                Name = "Сидоров Иван Петрович",
+                Passport = "1111222222",
+                RatingMin = 300,
+                RatingMax = 850,
                 CreditIndex = 707
             });
 
@@ -57,8 +61,28 @@ namespace DefenderUiGateway.Data
 
             modelBuilder.Entity<CreditRequest>().HasData(new CreditRequest
             {
-                Id = 1, BankId = 1, RegistrationNumber = "1234143124", Tin = "3434343",
+                Id = 1,
+                UserId = 1,
+                BankId = 1,
+                RegistrationNumber = "1234143124",
+                Tin = "3434343",
                 OrderDate = DateTime.Now.AddDays(-5)
+            }, new CreditRequest
+            {
+                Id = 2,
+                UserId = 1,
+                BankId = 1,
+                RegistrationNumber = "1234143124",
+                Tin = "3434343",
+                OrderDate = DateTime.Now.AddDays(-3)
+            }, new CreditRequest
+            {
+                Id = 3,
+                UserId = 1,
+                BankId = 2,
+                RegistrationNumber = "4536556456",
+                Tin = "45645645",
+                OrderDate = DateTime.Now.AddDays(-2)
             });
         }
 

@@ -14,7 +14,6 @@ namespace DefenderUiGateway.Controllers
     public class CreditInfoController : ControllerBase
     {
         private readonly DefenderDbContext _dbContext;
-
         private readonly IMapper _mapper;
 
         public CreditInfoController(DefenderDbContext dbContext, IMapper mapper)
@@ -26,7 +25,8 @@ namespace DefenderUiGateway.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CreditInfoItem>>> Get(int userId, int skip = 0, int take = 10)
         {
-            var dbCredits = await _dbContext.Credits.Include(x => x.Bank).Skip(skip).Take(take).ToListAsync();
+            var dbCredits = await _dbContext.Credits.Include(x => x.Bank).Where(x => x.UserId == userId).Skip(skip)
+                .Take(take).ToListAsync();
 
             var creditInfos = _mapper.Map<IEnumerable<CreditInfoItem>>(dbCredits);
 

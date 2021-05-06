@@ -8,6 +8,10 @@ namespace DefenderUiGateway.Data.Model
 
         public DateTime Created { get; set; } = DateTime.Now;
 
+        public int UserId { get; set; }
+
+        public User User { get; set; }
+
         public int BankId { get; set; }
 
         public Bank Bank { get; set; }
