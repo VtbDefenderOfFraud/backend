@@ -1,8 +1,7 @@
-using System.Collections.Generic;
-using IdentityServer4.Models;
-using IdentityServer4.Test;
+using DefenderUiGateway.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -12,10 +11,7 @@ namespace DefenderUiGateway
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        public Startup(IConfiguration configuration) => Configuration = configuration;
 
         public IConfiguration Configuration { get; }
 
@@ -25,8 +21,11 @@ namespace DefenderUiGateway
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "DefenderUiGateway", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo {Title = "DefenderUiGateway", Version = "v1"});
             });
+
+            services.AddDbContext<DefenderDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefenderDbContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,10 +44,7 @@ namespace DefenderUiGateway
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }
