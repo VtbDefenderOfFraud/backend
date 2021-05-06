@@ -23,5 +23,7 @@ namespace DefenderUiGateway.Data.Model
         public decimal Payment { get; set; }
 
         public decimal PaidSum { get; set; }
+
+        public DateTime PaymentDateTime { get; set; }
     }
 }

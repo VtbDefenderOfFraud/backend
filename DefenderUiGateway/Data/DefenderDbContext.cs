@@ -22,7 +22,38 @@ namespace DefenderUiGateway.Data
                 .HasData(new Bank {Id = 1, Name = "СберБанк"}, new Bank {Id = 2, Name = "Тинькофф"});
 
             modelBuilder.Entity<Credit>().HasData(new Credit
-                {Id = 1, BankId = 1, TotalSum = 200000, Payment = 50000, PaidSum = 0, StateId = 1, UserId = 1});
+                {
+                    Id = 1,
+                    BankId = 1,
+                    TotalSum = 200000,
+                    Payment = 50000,
+                    PaidSum = 0,
+                    StateId = 1,
+                    PaymentDateTime = DateTime.Now.AddDays(-5),
+                    UserId = 1
+                },
+                new Credit
+                {
+                    Id = 2,
+                    BankId = 1,
+                    TotalSum = 500000,
+                    Payment = 45000,
+                    PaidSum = 90000,
+                    StateId = 0,
+                    PaymentDateTime = DateTime.Now.AddDays(-3),
+                    UserId = 1
+                },
+                new Credit
+                {
+                    Id = 3,
+                    BankId = 2,
+                    TotalSum = 150000,
+                    Payment = 3000,
+                    PaidSum = 3000,
+                    StateId = 0,
+                    PaymentDateTime = DateTime.Now.AddDays(-2),
+                    UserId = 1
+                });
 
             modelBuilder.Entity<CreditRequest>().HasData(new CreditRequest
             {
