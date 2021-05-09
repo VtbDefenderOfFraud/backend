@@ -1,4 +1,4 @@
-﻿using Bki.Data.Model;
+﻿using Bki.Model.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bki.Data
@@ -15,16 +15,23 @@ namespace Bki.Data
                 new Bank
                 {
                     Id = 1,
+                    Name = "МФО \"Копеечка онлайн\"",
+                },
+                new Bank
+                {
+                    Id = 2,
                     Name = "СберБанк",
                 }, new Bank
                 {
-                    Id = 2,
+                    Id = 3,
                     Name = "Тинькофф",
                 });
         }
 
-        public DbSet<LoanRequest> LoanRequests { get; set; }
+        public DbSet<Credit> Credits { get; set; }
 
         public DbSet<Bank> Banks { get; set; }
+
+        protected DbSet<EntityFrameworkCore.MemoryJoin.QueryModelClass> QueryData { get; set; }
     }
 }

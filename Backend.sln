@@ -5,13 +5,15 @@ VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DefenderIdentity", "DefenderIdentity\DefenderIdentity.csproj", "{FC73012F-8E3B-42BC-9580-914D316CD03E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bki", "Bki\Bki.csproj", "{49E12124-175A-43CF-8E85-D0B0C9F589A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bki", "Bki\Bki.csproj", "{49E12124-175A-43CF-8E85-D0B0C9F589A7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DefenderUiGateway", "DefenderUiGateway\DefenderUiGateway.csproj", "{148F59B7-6193-44DE-8FB5-C5CD29C04118}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationClient", "NotificationClient\NotificationClient.csproj", "{3F7EE1F3-384B-421A-97DC-512CF8344ABC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationClient", "NotificationClient\NotificationClient.csproj", "{3F7EE1F3-384B-421A-97DC-512CF8344ABC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationClientTests", "NotificationClientTests\NotificationClientTests.csproj", "{101CCFC9-C6AE-461E-A75B-8D34C5329DA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationClientTests", "NotificationClientTests\NotificationClientTests.csproj", "{101CCFC9-C6AE-461E-A75B-8D34C5329DA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BkiPoller", "BkiPoller\BkiPoller.csproj", "{0CFE2B51-611F-4D14-8E33-1424BEB09A54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{101CCFC9-C6AE-461E-A75B-8D34C5329DA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{101CCFC9-C6AE-461E-A75B-8D34C5329DA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{101CCFC9-C6AE-461E-A75B-8D34C5329DA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CFE2B51-611F-4D14-8E33-1424BEB09A54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CFE2B51-611F-4D14-8E33-1424BEB09A54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CFE2B51-611F-4D14-8E33-1424BEB09A54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CFE2B51-611F-4D14-8E33-1424BEB09A54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,10 +3,11 @@ using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Bki.Data;
-using Bki.Data.Model;
 using Bki.Model;
+using Bki.Model.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Credit = Bki.Model.UI.Credit;
 
 namespace Bki.Controllers
 {
@@ -34,9 +35,9 @@ namespace Bki.Controllers
         public IActionResult Privacy() => View();
 
         [HttpPost]
-        public async Task<IActionResult> Index(Model.LoanRequest request)
+        public async Task<IActionResult> Index(Credit request)
         {
-            _dbContext.Add(new Data.Model.LoanRequest(request.BankId, request.Passport, request.Amount));
+            _dbContext.Add(new Model.Data.Credit(request.BankId, request.Passport, request.Amount));
 
             await _dbContext.SaveChangesAsync();
 

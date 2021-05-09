@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Bki.Data.Model
+namespace Bki.Model.Data
 {
     public class Bank
     {

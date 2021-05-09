@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Bki.Model
+namespace Bki.Model.UI
 {
-    public class LoanRequest
+    public class Credit
     {
         [Required]
         public string Passport { get; set; }

@@ -1,4 +1,4 @@
-﻿@model Bki.Model.LoanRequest
+﻿@model Bki.Model.UI.Credit
 
 @{
     ViewData["Title"] = "Добавить новый кредит";
@@ -14,9 +14,9 @@
         </div>
         <br>
         <label>Серия/номер паспорта</label><br/>
-        <input type="text" asp-for="Passport"/><br/><br/>
+        <input type="text" asp-for="Passport" value="1111222222"/><br/><br/>
         <label>Сумма</label><br/>
-        <input type="text" asp-for="Amount"/><br/><br/>
+        <input type="text" asp-for="Amount" value="16000"/><br/><br/>
         <input type="submit" value="Отправить"/>
     </form>
 </div>

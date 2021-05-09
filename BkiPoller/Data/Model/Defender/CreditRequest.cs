@@ -1,9 +1,7 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore;
 
-namespace DefenderUiGateway.Data.Model
+namespace BkiPoller.Data.Model.Defender
 {
-    [Index(nameof(BkiId), IsUnique = true)]
     public class CreditRequest
     {
         public int Id { get; set; }
@@ -15,8 +13,6 @@ namespace DefenderUiGateway.Data.Model
         public User User { get; set; }
 
         public int BankId { get; set; }
-
-        public Bank Bank { get; set; }
 
         public DateTime OrderDate { get; set; }
 
