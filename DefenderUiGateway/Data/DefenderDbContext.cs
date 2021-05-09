@@ -25,10 +25,12 @@ namespace DefenderUiGateway.Data
             modelBuilder.Entity<Bank>()
                 .HasData(new Bank {Id = 1, Name = "СберБанк"}, new Bank {Id = 2, Name = "Тинькофф"});
 
-            modelBuilder.Entity<Credit>().HasData(new Credit
+            modelBuilder.Entity<Credit>().HasData(
+                new Credit
                 {
                     Id = 1,
                     BankId = 1,
+                    InActionSince = DateTime.Now.AddDays(-10),
                     TotalSum = 200000,
                     Payment = 50000,
                     PaidSum = 0,
@@ -40,6 +42,7 @@ namespace DefenderUiGateway.Data
                 {
                     Id = 2,
                     BankId = 1,
+                    InActionSince = DateTime.Now.AddDays(-6),
                     TotalSum = 500000,
                     Payment = 45000,
                     PaidSum = 90000,
@@ -51,6 +54,7 @@ namespace DefenderUiGateway.Data
                 {
                     Id = 3,
                     BankId = 2,
+                    InActionSince = DateTime.Now.AddDays(-4),
                     TotalSum = 150000,
                     Payment = 3000,
                     PaidSum = 3000,

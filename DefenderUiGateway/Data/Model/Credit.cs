@@ -18,6 +18,8 @@ namespace DefenderUiGateway.Data.Model
 
         public Bank Bank { get; set; }
 
+        public DateTime InActionSince { get; set; }
+
         public decimal TotalSum { get; set; }
 
         public decimal Payment { get; set; }

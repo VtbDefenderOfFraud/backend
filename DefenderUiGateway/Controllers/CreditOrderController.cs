@@ -26,8 +26,13 @@ namespace DefenderUiGateway.Controllers
         public async Task<ActionResult<IEnumerable<CreditOrder>>> Get(int userId, int skip = 0, int take = 10)
         {
             var dbCreditRequests =
-                await _dbContext.CreditRequests.Include(x => x.Bank).Where(x => x.UserId == userId).Skip(skip)
-                    .Take(take).ToListAsync();
+                await _dbContext.CreditRequests
+                    .Include(x => x.Bank)
+                    .Where(x => x.UserId == userId)
+                    .Skip(skip)
+                    .Take(take)
+                    .OrderByDescending(r => r.OrderDate)
+                    .ToListAsync();
 
             var creditOrders = _mapper.Map<IEnumerable<CreditOrder>>(dbCreditRequests);
 

@@ -25,8 +25,14 @@ namespace DefenderUiGateway.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CreditInfoItem>>> Get(int userId, int skip = 0, int take = 10)
         {
-            var dbCredits = await _dbContext.Credits.Include(x => x.Bank).Where(x => x.UserId == userId).Skip(skip)
-                .Take(take).ToListAsync();
+            var dbCredits =
+                await _dbContext.Credits
+                    .Include(x => x.Bank)
+                    .Where(x => x.UserId == userId)
+                    .Skip(skip)
+                    .Take(take)
+                    .OrderByDescending(c => c.InActionSince)
+                    .ToListAsync();
 
             var creditInfos = _mapper.Map<IEnumerable<CreditInfoItem>>(dbCredits);
 
