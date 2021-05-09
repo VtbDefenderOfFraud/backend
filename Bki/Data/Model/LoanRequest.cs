@@ -2,13 +2,14 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 
-namespace Bki.Models
+namespace Bki.Data.Model
 {
     [Index(nameof(Passport))]
     public class LoanRequest
     {
-        public LoanRequest(string passport, int amount)
+        public LoanRequest(int bankId, string passport, int amount)
         {
+            BankId = bankId;
             Passport = passport;
             Amount = amount;
         }
@@ -21,5 +22,9 @@ namespace Bki.Models
         public string Passport { get; set; }
 
         public int Amount { get; set; }
+
+        public int BankId { get; set; }
+
+        public Bank Bank { get; set; }
     }
 }

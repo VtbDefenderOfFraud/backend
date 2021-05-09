@@ -1,9 +1,12 @@
-﻿using Bki.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Bki.Data;
+using Bki.Data.Model;
+using Bki.Model;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bki.Controllers
 {
@@ -19,14 +22,21 @@ namespace Bki.Controllers
             _dbContext = dbContext;
         }
 
-        public IActionResult Index() => View();
+        public async Task<IActionResult> Index()
+        {
+            var banks = await _dbContext.Banks.AsNoTracking().ToListAsync();
+
+            ViewBag.Banks = new SelectList(banks, nameof(Bank.Id), nameof(Bank.Name));
+
+            return View();
+        }
 
         public IActionResult Privacy() => View();
 
         [HttpPost]
-        public async Task<IActionResult> Index(string passport, int amount)
+        public async Task<IActionResult> Index(Model.LoanRequest request)
         {
-            _dbContext.Add(new LoanRequest(passport, amount));
+            _dbContext.Add(new Data.Model.LoanRequest(request.BankId, request.Passport, request.Amount));
 
             await _dbContext.SaveChangesAsync();
 

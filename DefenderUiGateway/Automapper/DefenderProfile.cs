@@ -13,7 +13,9 @@ namespace DefenderUiGateway.Automapper
                 .ForMember(d => d.BankName, o => o.MapFrom(s => s.Bank.Name));
 
             CreateMap<Data.Model.CreditRequest, Model.CreditOrder>()
-                .ForMember(d => d.BankName, o => o.MapFrom(s => s.Bank.Name));
+                .ForMember(d => d.BankName, o => o.MapFrom(s => s.Bank.Name))
+                .ForMember(d => d.RegistrationNumber, o => o.MapFrom(s => s.Bank.RegistrationNumber))
+                .ForMember(d => d.Tin, o => o.MapFrom(s => s.Bank.Tin));
         }
     }
 }

@@ -16,10 +16,6 @@ namespace DefenderUiGateway.Data.Model
 
         public Bank Bank { get; set; }
 
-        public string RegistrationNumber { get; set; }
-
-        public string Tin { get; set; }
-
         public DateTime OrderDate { get; set; }
     }
 }

@@ -28,6 +28,7 @@ namespace DefenderUiGateway.Controllers
             var dbCreditRequests =
                 await _dbContext.CreditRequests
                     .Include(x => x.Bank)
+                    .AsNoTracking()
                     .Where(x => x.UserId == userId)
                     .Skip(skip)
                     .Take(take)

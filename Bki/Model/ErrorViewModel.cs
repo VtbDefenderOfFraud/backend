@@ -1,6 +1,4 @@
-using System;
-
-namespace Bki.Models
+namespace Bki.Model
 {
     public class ErrorViewModel
     {

@@ -22,8 +22,18 @@ namespace DefenderUiGateway.Data
                 CreditIndex = 707
             });
 
-            modelBuilder.Entity<Bank>()
-                .HasData(new Bank {Id = 1, Name = "СберБанк"}, new Bank {Id = 2, Name = "Тинькофф"});
+            modelBuilder.Entity<Bank>().HasData(
+                new Bank
+                {
+                    Id = 1, Name = "СберБанк",
+                    RegistrationNumber = "1234143124",
+                    Tin = "3434343"
+                }, new Bank
+                {
+                    Id = 2, Name = "Тинькофф",
+                    RegistrationNumber = "4536556456",
+                    Tin = "45645645"
+                });
 
             modelBuilder.Entity<Credit>().HasData(
                 new Credit
@@ -68,24 +78,18 @@ namespace DefenderUiGateway.Data
                 Id = 1,
                 UserId = 1,
                 BankId = 1,
-                RegistrationNumber = "1234143124",
-                Tin = "3434343",
                 OrderDate = DateTime.Now.AddDays(-5)
             }, new CreditRequest
             {
                 Id = 2,
                 UserId = 1,
                 BankId = 1,
-                RegistrationNumber = "1234143124",
-                Tin = "3434343",
                 OrderDate = DateTime.Now.AddDays(-3)
             }, new CreditRequest
             {
                 Id = 3,
                 UserId = 1,
                 BankId = 2,
-                RegistrationNumber = "4536556456",
-                Tin = "45645645",
                 OrderDate = DateTime.Now.AddDays(-2)
             });
         }

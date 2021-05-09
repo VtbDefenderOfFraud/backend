@@ -1,15 +1,22 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model Bki.Model.LoanRequest
+
+@{
+    ViewData["Title"] = "Добавить новый кредит";
 }
 
 <div class="text-center">
     <h1 class="display-4">Добавить новый кредит</h1>
-    
+
     <form method="post">
-        <label>Серия/номер паспорта</label><br />
-        <input type="text" name="passport" /><br /><br />
-        <label>Сумма</label><br />
-        <input type="text" name="amount" /><br /><br />
-        <input type="submit" value="Отправить" />
+        <div>
+            <label>Выберите кредитную организацию</label><br />
+            <select asp-for="BankId" asp-items="@ViewBag.Banks"></select>
+        </div>
+        <br>
+        <label>Серия/номер паспорта</label><br/>
+        <input type="text" asp-for="Passport"/><br/><br/>
+        <label>Сумма</label><br/>
+        <input type="text" asp-for="Amount"/><br/><br/>
+        <input type="submit" value="Отправить"/>
     </form>
 </div>

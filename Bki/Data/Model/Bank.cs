@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace DefenderUiGateway.Data.Model
+namespace Bki.Data.Model
 {
     public class Bank
     {
@@ -11,9 +11,5 @@ namespace DefenderUiGateway.Data.Model
 
         [Required]
         public string Name { get; set; }
-
-        public string RegistrationNumber { get; set; }
-
-        public string Tin { get; set; }
     }
 }
