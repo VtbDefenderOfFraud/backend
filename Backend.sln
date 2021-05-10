@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationClient", "Notif
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationClientTests", "NotificationClientTests\NotificationClientTests.csproj", "{101CCFC9-C6AE-461E-A75B-8D34C5329DA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BkiPoller", "BkiPoller\BkiPoller.csproj", "{0CFE2B51-611F-4D14-8E33-1424BEB09A54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BkiPoller", "BkiPoller\BkiPoller.csproj", "{0CFE2B51-611F-4D14-8E33-1424BEB09A54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationPusher", "NotificationPusher\NotificationPusher.csproj", "{E615E1DD-2794-49AE-AF96-065A605B5151}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{0CFE2B51-611F-4D14-8E33-1424BEB09A54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CFE2B51-611F-4D14-8E33-1424BEB09A54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CFE2B51-611F-4D14-8E33-1424BEB09A54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E615E1DD-2794-49AE-AF96-065A605B5151}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E615E1DD-2794-49AE-AF96-065A605B5151}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E615E1DD-2794-49AE-AF96-065A605B5151}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E615E1DD-2794-49AE-AF96-065A605B5151}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

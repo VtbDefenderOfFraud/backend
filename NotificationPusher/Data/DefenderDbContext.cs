@@ -1,7 +1,7 @@
-﻿using BkiPoller.Data.Model.Defender;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using NotificationPusher.Data.Model;
 
-namespace BkiPoller.Data
+namespace NotificationPusher.Data
 {
     public class DefenderDbContext : DbContext
     {
@@ -9,12 +9,12 @@ namespace BkiPoller.Data
         {
         }
 
+        public DbSet<Push> Pushes { get; set; }
+
         public DbSet<User> Users { get; set; }
 
         public DbSet<CreditRequest> CreditRequests { get; set; }
 
-        public DbSet<UserLastPolling> UsersLastPolling { get; set; }
-
-        public DbSet<Push> Pushes { get; set; }
+        protected DbSet<EntityFrameworkCore.MemoryJoin.QueryModelClass> QueryData { get; set; }
     }
 }

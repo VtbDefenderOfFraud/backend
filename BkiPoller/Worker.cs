@@ -76,9 +76,18 @@ namespace BkiPoller
                     UserId = userId.Value,
                 });
 
+                defenderDbContext.Pushes.Add(new Push
+                {
+                    UserId = userId.Value,
+                    Since = TruncateMilliseconds(newCredit.Created),
+                });
+
                 _logger.LogInformation("New credit request added");
             }
         }
+
+        private static DateTime TruncateMilliseconds(DateTime dateTime) =>
+            dateTime.AddTicks(-(dateTime.Ticks % TimeSpan.TicksPerSecond));
 
         private static void UpdateLastPolled(IEnumerable<UserLastPolling> usersLastPollings, DateTime lastPolled)
         {

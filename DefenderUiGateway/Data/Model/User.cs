@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace DefenderUiGateway.Data.Model
 {
     [Index(nameof(Passport), IsUnique = true)]
+    [Index(nameof(Phone), IsUnique = true)]
     public class User
     {
         public int Id { get; set; }
@@ -16,6 +17,9 @@ namespace DefenderUiGateway.Data.Model
 
         [Required]
         public string Name { get; set; }
+
+        [Required]
+        public string Phone { get; set; }
 
         public int CreditIndex { get; set; }
 

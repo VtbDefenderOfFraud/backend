@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace BkiPoller.Data.Model.Defender
 {
@@ -11,7 +10,6 @@ namespace BkiPoller.Data.Model.Defender
 
         public DateTime? Updated { get; set; }
 
-        [Required]
         public string Passport { get; set; }
 
         public DateTime LastPolled { get; set; }

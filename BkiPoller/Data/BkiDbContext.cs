@@ -1,5 +1,4 @@
-﻿using BkiPoller.Data.Model;
-using BkiPoller.Data.Model.Bki;
+﻿using BkiPoller.Data.Model.Bki;
 using Microsoft.EntityFrameworkCore;
 
 namespace BkiPoller.Data

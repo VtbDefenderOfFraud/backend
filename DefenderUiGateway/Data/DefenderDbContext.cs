@@ -20,6 +20,7 @@ namespace DefenderUiGateway.Data
                     Id = 1,
                     Name = "Сидоров Иван Петрович",
                     Passport = passport,
+                    Phone = "+7(123)1234567",
                     RatingMin = 300,
                     RatingMax = 850,
                     CreditIndex = 707
@@ -123,5 +124,7 @@ namespace DefenderUiGateway.Data
         public DbSet<CreditRequest> CreditRequests { get; set; }
 
         public DbSet<UserLastPolling> UsersLastPolling { get; set; }
+
+        public DbSet<Push> Pushes { get; set; }
     }
 }
