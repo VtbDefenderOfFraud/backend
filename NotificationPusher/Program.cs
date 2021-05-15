@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NotificationClient;
 using NotificationPusher.Data;
 
 namespace NotificationPusher
@@ -15,6 +16,7 @@ namespace NotificationPusher
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddHostedService<Worker>();
+                    services.RegisterNotificationClient(hostContext.Configuration.GetValue<string>("Files:FireBase"));
 
                     services.AddDbContext<DefenderDbContext>(options =>
                         options.UseSqlServer(hostContext.Configuration.GetConnectionString("DefenderDbContext")));

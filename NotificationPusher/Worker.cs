@@ -1,4 +1,4 @@
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using EntityFrameworkCore.MemoryJoin;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using NotificationClient;
 using NotificationPusher.Data;
 
 namespace NotificationPusher
@@ -15,11 +16,13 @@ namespace NotificationPusher
     {
         private readonly IServiceScopeFactory _serviceScopeFactory;
         private readonly ILogger<Worker> _logger;
+        private readonly INotificationClient _notificationClient;
 
-        public Worker(IServiceScopeFactory serviceScopeFactory, ILogger<Worker> logger)
+        public Worker(IServiceScopeFactory serviceScopeFactory, ILogger<Worker> logger, INotificationClient notificationClient)
         {
             _serviceScopeFactory = serviceScopeFactory;
             _logger = logger;
+            _notificationClient = notificationClient;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -59,10 +62,12 @@ namespace NotificationPusher
                         {
                             var userId = userCreditRequests.Key;
 
-                            var phone = pushes.First(x => x.UserId == userCreditRequests.Key).User.Phone;
+                            var user = pushes.First(x => x.UserId == userCreditRequests.Key).User;
 
                             // todo push
-                            _logger.LogInformation("Push done to {Phone} with {CreditRequestsCount}", phone,
+                            await _notificationClient.SendAsync(new[] {user.Token}, "Обнаружен новый кредит!",
+                                $"Набрано {userCreditRequests.Count()} кредитов");
+                            _logger.LogInformation("Push done to {Phone} with {CreditRequestsCount}", user.Phone,
                                 userCreditRequests.Count());
 
 
