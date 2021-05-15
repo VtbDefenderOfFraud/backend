@@ -21,6 +21,10 @@ namespace DefenderUiGateway.Data.Model
         [Required]
         public string Phone { get; set; }
 
+        public string Login { get; set; }
+
+        public string Token { get; set; }
+
         public int CreditIndex { get; set; }
 
         public int RatingMin { get; set; }
