@@ -15,5 +15,7 @@ namespace DefenderUiGateway.Data.Model
         public string RegistrationNumber { get; set; }
 
         public string Tin { get; set; }
+        
+        public string IcoUrl { get; set; }
     }
 }
