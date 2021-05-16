@@ -10,7 +10,7 @@ namespace BkiPoller.Data.Model.Bki
 
         public string Passport { get; set; }
 
-        public int Amount { get; set; }
+        public decimal Amount { get; set; }
 
         public int BankId { get; set; }
     }
