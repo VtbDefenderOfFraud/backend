@@ -7,7 +7,7 @@ namespace Bki.Model.Data
     [Index(nameof(Passport))]
     public class Credit
     {
-        public Credit(int bankId, string passport, int amount)
+        public Credit(int bankId, string passport, decimal amount)
         {
             BankId = bankId;
             Passport = passport;
@@ -21,7 +21,7 @@ namespace Bki.Model.Data
         [Required]
         public string Passport { get; set; }
 
-        public int Amount { get; set; }
+        public decimal Amount { get; set; }
 
         public int BankId { get; set; }
 

@@ -68,12 +68,20 @@ namespace BkiPoller
 
                 if (userId == null) continue;
 
+                if (defenderDbContext.CreditRequests.Any(c => c.BkiId == newCredit.Id))
+                {
+                    _logger.LogInformation($"Credit with BkiId {newCredit.Id} already added. Skip.");
+
+                    continue;
+                }
+
                 defenderDbContext.CreditRequests.Add(new CreditRequest
                 {
                     BankId = newCredit.BankId,
                     BkiId = newCredit.Id,
                     OrderDate = newCredit.Created,
                     UserId = userId.Value,
+                    Amount = newCredit.Amount,
                 });
 
                 defenderDbContext.Pushes.Add(new Push

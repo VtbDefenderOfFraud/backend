@@ -16,6 +16,8 @@ namespace BkiPoller.Data.Model.Defender
 
         public DateTime OrderDate { get; set; }
 
+        public decimal Amount { get; set; }
+
         public int? BkiId { get; set; }
     }
 }

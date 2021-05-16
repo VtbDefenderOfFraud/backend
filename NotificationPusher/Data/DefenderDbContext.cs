@@ -9,6 +9,8 @@ namespace NotificationPusher.Data
         {
         }
 
+        public DbSet<Bank> Banks { get; set; }
+
         public DbSet<Push> Pushes { get; set; }
 
         public DbSet<User> Users { get; set; }

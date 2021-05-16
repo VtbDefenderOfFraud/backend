@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 using EntityFrameworkCore.MemoryJoin;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 using NotificationClient;
 using NotificationPusher.Data;
+using NotificationPusher.Model;
 
 namespace NotificationPusher
 {
@@ -18,7 +20,8 @@ namespace NotificationPusher
         private readonly ILogger<Worker> _logger;
         private readonly INotificationClient _notificationClient;
 
-        public Worker(IServiceScopeFactory serviceScopeFactory, ILogger<Worker> logger, INotificationClient notificationClient)
+        public Worker(IServiceScopeFactory serviceScopeFactory, ILogger<Worker> logger,
+            INotificationClient notificationClient)
         {
             _serviceScopeFactory = serviceScopeFactory;
             _logger = logger;
@@ -50,7 +53,7 @@ namespace NotificationPusher
                         var userWithMinSinceForQuery = defenderDbContext.FromLocalList(usersWithMinSince);
 
                         var creditRequestsForPushQuery =
-                            from creditRequest in defenderDbContext.CreditRequests.AsNoTracking()
+                            from creditRequest in defenderDbContext.CreditRequests.AsNoTracking().Include(r => r.Bank)
                             join userWithMinSince in userWithMinSinceForQuery on creditRequest.UserId equals
                                 userWithMinSince.UserId
                             where creditRequest.OrderDate >= userWithMinSince.Since
@@ -64,11 +67,33 @@ namespace NotificationPusher
 
                             var user = pushes.First(x => x.UserId == userCreditRequests.Key).User;
 
-                            // todo push
-                            await _notificationClient.SendAsync(new[] {user.Token}, "Обнаружен новый кредит!",
-                                $"Набрано {userCreditRequests.Count()} кредитов");
-                            _logger.LogInformation("Push done to {Phone} with {CreditRequestsCount}", user.Phone,
-                                userCreditRequests.Count());
+                            var creditsCount = userCreditRequests.Count();
+
+                            var isMoreThenOneCredit = creditsCount > 1;
+
+                            var firstCredit = userCreditRequests.First();
+
+                            var pushMessage = new PushMessage
+                            {
+                                BankName = firstCredit.Bank.Name,
+                                BankIcoUrl = firstCredit.Bank.IcoUrl,
+                                OrderDate = firstCredit.OrderDate,
+                                TotalSum = firstCredit.Amount,
+                                Text = isMoreThenOneCredit
+                                    ? $"На ваше имя взято более одного кредита: {creditsCount} шт!"
+                                    : "На ваше имя взят кредит! Это были вы?"
+                            };
+
+                            var pushTitle = isMoreThenOneCredit
+                                ? "Обнаружены новые кредиты!"
+                                : "Обнаружен новый кредит!";
+
+                            var pushMessageString = JsonConvert.SerializeObject(pushMessage);
+
+                            await _notificationClient.SendAsync(new[] {user.Token}, pushTitle, pushMessageString);
+
+                            _logger.LogInformation("Push done to {Phone}, total credits: {Count} with message {Message}", user.Phone,
+                                creditsCount, pushMessageString);
 
 
                             foreach (var push in pushes.Where(p => p.UserId == userId))
