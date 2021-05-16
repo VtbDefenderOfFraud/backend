@@ -9,5 +9,6 @@ namespace DefenderUiGateway.Model
         public string RegistrationNumber { get; set; }
         public string Tin { get; set; }
         public DateTime OrderDate { get; set; }
+        public decimal Amount { get; set; }
     }
 }
