@@ -1,13 +1,9 @@
-﻿using System;
-
-namespace NotificationPusher.Model
+﻿namespace NotificationPusher.Model
 {
     public class PushMessage
     {
-        public string BankName { get; set; }
-        public string BankIcoUrl { get; set; }
-        public decimal TotalSum { get; set; }
-        public DateTime OrderDate { get; set; }
-        public string Text { get; set; }
+        public PushMessageAps Aps { get; set; }
+
+        public PushMessageData Data { get; set; }
     }
 }

@@ -8,6 +8,7 @@ using EntityFrameworkCore.MemoryJoin;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using NotificationClient;
 using NotificationPusher.Data;
 using NotificationPusher.Model;
@@ -73,26 +74,34 @@ namespace NotificationPusher
 
                             var firstCredit = userCreditRequests.First();
 
-                            var pushMessage = new PushMessage
-                            {
-                                BankName = firstCredit.Bank.Name,
-                                BankIcoUrl = firstCredit.Bank.IcoUrl,
-                                OrderDate = firstCredit.OrderDate,
-                                TotalSum = firstCredit.Amount,
-                                Text = isMoreThenOneCredit
-                                    ? $"На ваше имя взято более одного кредита: {creditsCount} шт!"
-                                    : "На ваше имя взят кредит! Это были вы?"
-                            };
-
                             var pushTitle = isMoreThenOneCredit
                                 ? "Обнаружены новые кредиты!"
                                 : "Обнаружен новый кредит!";
 
-                            var pushMessageString = JsonConvert.SerializeObject(pushMessage);
+                            var pushMessage = new PushMessage
+                            {
+                                Aps = new PushMessageAps {Alert = pushTitle},
+                                Data = new PushMessageData
+                                {
+                                    BankName = firstCredit.Bank.Name,
+                                    BankIcoUrl = firstCredit.Bank.IcoUrl,
+                                    OrderDate = firstCredit.OrderDate,
+                                    TotalSum = firstCredit.Amount,
+                                    Text = isMoreThenOneCredit
+                                        ? $"На ваше имя взято более одного кредита: {creditsCount} шт!"
+                                        : "На ваше имя взят кредит! Это были вы?"
+                                }
+                            };
+
+                            var pushMessageString =
+                                JsonConvert.SerializeObject(pushMessage, Formatting.Indented,
+                                    new JsonSerializerSettings
+                                        {ContractResolver = new CamelCasePropertyNamesContractResolver()});
 
                             await _notificationClient.SendAsync(new[] {user.Token}, pushTitle, pushMessageString);
 
-                            _logger.LogInformation("Push done to {Phone}, total credits: {Count} with message {Message}", user.Phone,
+                            _logger.LogInformation(
+                                "Push done to {Phone}, total credits: {Count} with message {Message}", user.Phone,
                                 creditsCount, pushMessageString);
 
 
