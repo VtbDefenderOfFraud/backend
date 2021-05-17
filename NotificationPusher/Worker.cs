@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -93,12 +95,25 @@ namespace NotificationPusher
                                 }
                             };
 
+                            var data = new Dictionary<string, string>
+                            {
+                                {"bankName", firstCredit.Bank.Name},
+                                {"bankIcoUrl", firstCredit.Bank.IcoUrl},
+                                {"orderDate", firstCredit.OrderDate.ToLongDateString()},
+                                {"totalSum", firstCredit.Amount.ToString(CultureInfo.InvariantCulture)},
+                                {
+                                    "text", isMoreThenOneCredit
+                                        ? $"На ваше имя взято более одного кредита: {creditsCount} шт!"
+                                        : "На ваше имя взят кредит! Это были вы?"
+                                }
+                            };
+
                             var pushMessageString =
                                 JsonConvert.SerializeObject(pushMessage, Formatting.Indented,
                                     new JsonSerializerSettings
                                         {ContractResolver = new CamelCasePropertyNamesContractResolver()});
 
-                            await _notificationClient.SendAsync(new[] {user.Token}, pushTitle, pushMessageString);
+                            await _notificationClient.SendAsync(new[] {user.Token}, pushTitle, data);
 
                             _logger.LogInformation(
                                 "Push done to {Phone}, total credits: {Count} with message {Message}", user.Phone,
